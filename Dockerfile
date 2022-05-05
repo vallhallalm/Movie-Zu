@@ -1,13 +1,24 @@
+FROM node:16.15.0-alpine AS BUILD_IMAGE
+WORKDIR /data/www
 
-FROM node:10
+# Copy app in workdir
+COPY . .
 
-# Créez un répertoire de travail et copiez sur nos fichiers de manifeste de dépendance.
-WORKDIR / movie-zu
-COPY ["package.json", "package-lock.json*", "./"]
+RUN npm install -g typescript
+RUN npm install
+RUN npx tsc
 
-# Si vous utilisez du fil:
-# construction de fils
-RUN npm install --production --silent && mv node_modules ../
+# Build the static files
+RUN npm run build
 
-# Exposer PORT 3000 sur notre machine virtuelle afin que nous puissions exécuter notre serveur
-EXPOSE 3000 
+# Copy only binaries in a new clean layer
+FROM nginx:stable-alpine
+
+COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=BUILD_IMAGE /data/www/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+STOPSIGNAL SIGQUIT
+
+CMD ["nginx", "-g", "daemon off;"]
