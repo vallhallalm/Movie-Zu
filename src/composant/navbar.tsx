@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 type AppProps = {}
 type AppState = {}
@@ -45,12 +46,12 @@ export class Navbar extends React.Component <AppProps, AppState> {
             <nav className="navbar navbar-default">
                 <div className="container-fluid">
                     <div className="navbar-header">
-                        <a className="navbar-brand" onClick={this.clickHandlerAccueil} href="">Accueil</a>
+                        <Link className="navbar-brand" onClick={this.clickHandlerAccueil} to="/">Accueil</Link>
                     </div>
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul className="nav navbar-nav">
-                            <li ><a onClick={this.clickHandlerTop} href="">Top Film </a></li>
-                            <li ><a onClick={this.clickHandlerSortie} href="">Sortie Récente</a></li>
+                            <li ><Link onClick={this.clickHandlerTop} to="/Top">Top Film </Link></li>
+                            <li ><Link onClick={this.clickHandlerSortie} to="/Sortie">Sortie Récente</Link></li>
                         </ul>
                         <form className="navbar-form navbar-left">
                             <div className="form-group">
@@ -61,6 +62,7 @@ export class Navbar extends React.Component <AppProps, AppState> {
                     </div>
                 </div>
             </nav>
+            
         );
     }
 }
