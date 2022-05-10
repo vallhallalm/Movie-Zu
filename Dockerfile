@@ -1,5 +1,5 @@
 FROM node:16.15.0-alpine AS BUILD_IMAGE
-WORKDIR /data/www
+WORKDIR /
 
 # Copy app in workdir
 COPY . .
