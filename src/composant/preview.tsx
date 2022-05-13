@@ -14,7 +14,7 @@ export class Preview extends React.Component <AppProps, AppState> {
     render() {
         return(
             <div className="row">
-                <div className="col-sm-6 col-md-4">
+                <div >
                     <div className="thumbnail">
                     <img src={this.props.affiche} width="200" height="300"/>
                     <div className="caption">
