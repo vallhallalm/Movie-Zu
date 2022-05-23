@@ -46,7 +46,7 @@ export class Preview extends React.Component <AppProps, AppState> {
             <div className="row">
                 <div >
                     <div className="thumbnail">
-                    <img src="" width="200" height="300" alt="affiche du film"/>
+                    <img src={this.state.affiche} width="200" height="300" alt="affiche du film"/>
                     <div className="caption">
                         <h3>Titre : {this.state.titre}</h3>
                         {/*<p>Realisateur : {this.props.realisateur} </p>*/}
