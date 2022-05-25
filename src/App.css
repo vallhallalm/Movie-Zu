@@ -60,3 +60,12 @@ footer{
   margin:15px !important;
   padding:0px !important;
 }
+
+.Modal{
+  position: absolute;
+  top: 70px;
+  left: 50px;
+  transition: all 0.3s ease-out;
+  width:90%;
+  height:90%;
+}

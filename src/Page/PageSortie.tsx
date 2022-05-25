@@ -24,6 +24,7 @@ export class PageSortie extends React.Component <AppProps, AppState> {
             let data = await response.json();
             data = await data.results;
             this.setState({donnée:data});
+            console.log(this.state.donnée[0].title)
         })();
     }
 
@@ -38,17 +39,17 @@ export class PageSortie extends React.Component <AppProps, AppState> {
                     <table>
                         <tbody>
                             <tr>
-                                <td className="preview"><Preview titre={this.state.donnée[0].title} affiche={"https://image.tmdb.org/t/p/w500/".concat(this.state.donnée[0].poster_path)}/></td>
-                                <td className="preview"><Preview titre={this.state.donnée[1].title} affiche={"https://image.tmdb.org/t/p/w500/".concat(this.state.donnée[1].poster_path)}/></td>
-                                <td className="preview"><Preview titre={this.state.donnée[2].title} affiche={"https://image.tmdb.org/t/p/w500/".concat(this.state.donnée[2].poster_path)}/></td>
-                                <td className="preview"><Preview titre={this.state.donnée[3].title} affiche={"https://image.tmdb.org/t/p/w500/".concat(this.state.donnée[3].poster_path)}/></td>
+                                <td className="preview"><Preview id={this.state.donnée[0].id} titre={this.state.donnée[0].title} affiche={"https://image.tmdb.org/t/p/w500/".concat(this.state.donnée[0].poster_path)}/></td>
+                                <td className="preview"><Preview id={this.state.donnée[1].id} titre={this.state.donnée[1].title} affiche={"https://image.tmdb.org/t/p/w500/".concat(this.state.donnée[1].poster_path)}/></td>
+                                <td className="preview"><Preview id={this.state.donnée[2].id} titre={this.state.donnée[2].title} affiche={"https://image.tmdb.org/t/p/w500/".concat(this.state.donnée[2].poster_path)}/></td>
+                                <td className="preview"><Preview id={this.state.donnée[3].id} titre={this.state.donnée[3].title} affiche={"https://image.tmdb.org/t/p/w500/".concat(this.state.donnée[3].poster_path)}/></td>
                                 
                             </tr>
                             <tr>
-                                <td className="preview"><Preview titre={this.state.donnée[4].title} affiche={"https://image.tmdb.org/t/p/w500/".concat(this.state.donnée[4].poster_path)}/></td>
-                                <td className="preview"><Preview titre={this.state.donnée[5].title} affiche={"https://image.tmdb.org/t/p/w500/".concat(this.state.donnée[5].poster_path)}/></td>
-                                <td className="preview"><Preview titre={this.state.donnée[6].title} affiche={"https://image.tmdb.org/t/p/w500/".concat(this.state.donnée[6].poster_path)}/></td>
-                                <td className="preview"><Preview titre={this.state.donnée[7].title} affiche={"https://image.tmdb.org/t/p/w500/".concat(this.state.donnée[7].poster_path)}/></td>
+                                <td className="preview"><Preview id={this.state.donnée[4].id} titre={this.state.donnée[4].title} affiche={"https://image.tmdb.org/t/p/w500/".concat(this.state.donnée[4].poster_path)}/></td>
+                                <td className="preview"><Preview id={this.state.donnée[5].id} titre={this.state.donnée[5].title} affiche={"https://image.tmdb.org/t/p/w500/".concat(this.state.donnée[5].poster_path)}/></td>
+                                <td className="preview"><Preview id={this.state.donnée[6].id} titre={this.state.donnée[6].title} affiche={"https://image.tmdb.org/t/p/w500/".concat(this.state.donnée[6].poster_path)}/></td>
+                                <td className="preview"><Preview id={this.state.donnée[7].id} titre={this.state.donnée[7].title} affiche={"https://image.tmdb.org/t/p/w500/".concat(this.state.donnée[7].poster_path)}/></td>
                             </tr>
                         </tbody>
                     </table>
