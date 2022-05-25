@@ -1,14 +1,14 @@
 import React from 'react';
-import {Preview} from '../composant/preview';
+import {Preview} from '../composant/preview'
 import {api} from '../api';
 
 
 
-type AppProps = {}
+type AppProps = {recherche:any}
 type AppState = {
     donnée:any
 }
-export class PageSortie extends React.Component <AppProps, AppState> {
+export class PageRecherche extends React.Component <AppProps, AppState> {
     
     constructor(props: AppProps){
         super(props);
@@ -18,13 +18,14 @@ export class PageSortie extends React.Component <AppProps, AppState> {
 
     componentDidMount(){
         let Api = new api();
-        let URL=Api.requete_url("now_playing");
+        let URL=Api.requete_url("top_rated");
         (async () => {
             let response = await fetch(URL);
             let data = await response.json();
             data = await data.results;
             this.setState({donnée:data});
         })();
+        console.log("test",this.props.recherche)
     }
 
     render() {  
