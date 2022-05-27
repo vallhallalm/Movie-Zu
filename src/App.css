@@ -69,3 +69,16 @@ footer{
   width:90%;
   height:90%;
 }
+
+progress[value] {
+  /* Reset the default appearance */
+  -webkit-appearance: none;
+   appearance: none;
+
+  width: 250px;
+  height: 20px;
+}
+
+.fermeture{
+  float:right;  
+}

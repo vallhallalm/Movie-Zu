@@ -31,8 +31,9 @@ export class Detail extends React.Component <AppProps, AppState> {
             let response = await fetch(URL);
             let data = await response.json();
             this.setState({donnée:data,
-                avancement:Number(data.vote_average)
+                avancement:data.vote_average
             });
+            console.log(this.state.donnée)
         })();
     }
 
@@ -61,7 +62,7 @@ export class Detail extends React.Component <AppProps, AppState> {
                     <div className="panel panel-default">
                         <div className="panel-heading">
                             {this.state.donnée.title}
-                            <button onClick={this.props.cache}>X</button>
+                            <button className='fermeture'onClick={this.props.cache}>X</button>
                         </div>
                         <div className="panel-body">
                             <table>
@@ -70,16 +71,17 @@ export class Detail extends React.Component <AppProps, AppState> {
                                         <td>{<img alt="affiche du film" src={"https://image.tmdb.org/t/p/w500/".concat(this.state.donnée.poster_path)}/>}</td>
                                         <td>
                                             <ul>
-                                                <li> Résumé du film : {this.state.donnée.overview}</li>
-                                                <li> Genre : {this.state.donnée.genres[0].name}</li>
-                                                <li> Sortie le : {this.state.donnée.release_date}</li>
-                                                <li> Production : {this.state.donnée.production_companies[0].name}</li>
+                                                <li> <b>Résumé du film :</b> {this.state.donnée.overview}</li>
+                                                <li> <b>Genre :</b> {this.state.donnée.genres[0].name}</li>
+                                                <li> <b>Sortie le :</b> {this.state.donnée.release_date}</li>
+                                                <li> <b>Production :</b> {this.state.donnée.production_companies[0].name}</li>
+                                                <li> <b>Pays de production :</b> {this.state.donnée.production_countries[0].name}</li>
+                                                <li> <b>Budget :</b> {this.state.donnée.budget}$</li>
+                                                <li> <b>Site officiel :</b> <a href={this.state.donnée.homepage}>{this.state.donnée.homepage}</a></li>
                                                 <li>
-                                                    <div className="progress">
-                                                        <div className="progress-bar progress-bar-success" role="progressbar" aria-valuenow={Number(this.state.donnée.vote_average)} aria-valuemin={0} aria-valuemax={10} style={{width:this.state.avancement*70}} >
-                                                            <span >{this.state.donnée.vote_average}/10 popularity</span>
-                                                        </div>
-                                                    </div>
+                                                    Popularity : {this.state.avancement}/10
+                                                    <br/>
+                                                    <progress max="10" value={this.state.avancement}></progress>
                                                 </li>
                                             </ul>
                                         </td>
