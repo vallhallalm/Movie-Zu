@@ -18,14 +18,13 @@ export class PageRecherche extends React.Component <AppProps, AppState> {
 
     componentDidMount(){
         let Api = new api();
-        let URL=Api.requete_url("top_rated");
+        let URL=Api.requete_recherche(this.props.recherche);
         (async () => {
             let response = await fetch(URL);
             let data = await response.json();
             data = await data.results;
             this.setState({donnée:data});
         })();
-        console.log("test",this.props.recherche)
     }
 
     render() {  

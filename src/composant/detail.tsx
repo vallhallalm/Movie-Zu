@@ -1,5 +1,6 @@
 import React from 'react';
 import {api} from '../api';
+import {Preview} from './preview'
 
 type AppProps = {
     cache:any,
@@ -10,6 +11,7 @@ type AppState = {
     isOpen:boolean,
     id:string,
     donnée:any
+    recommandations:any,
     avancement:any
 }
 export class Detail extends React.Component <AppProps, AppState> {
@@ -20,6 +22,7 @@ export class Detail extends React.Component <AppProps, AppState> {
             isOpen: this.props.isOpen,
             id:this.props.id,
             donnée:null,
+            recommandations:null,
             avancement:0
         }   
     }
@@ -33,7 +36,14 @@ export class Detail extends React.Component <AppProps, AppState> {
             this.setState({donnée:data,
                 avancement:data.vote_average
             });
-            console.log(this.state.donnée)
+        })();
+        URL=Api.requete_recomm(this.state.id.toString());
+        (async () => {
+            let response = await fetch(URL);
+            let data = await response.json();
+            data= await data.results;
+            this.setState({recommandations:data});
+            console.log(this.state.recommandations)
         })();
     }
 
@@ -42,7 +52,7 @@ export class Detail extends React.Component <AppProps, AppState> {
     }
 
     render() {
-        if (this.state.donnée==null){
+        if (this.state.donnée==null || this.state.recommandations==null){
             return( 
                 <div className='Modal'>
                     <div className="panel panel-default">
@@ -56,7 +66,7 @@ export class Detail extends React.Component <AppProps, AppState> {
                     </div>
                 </div>
             )
-        }else{
+            }else{
             return(
                 <div className='Modal'>
                     <div className="panel panel-default">
@@ -91,6 +101,16 @@ export class Detail extends React.Component <AppProps, AppState> {
                         </div>
                         <div className="panel-footer">
                             Films similaires : 
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td className="preview"><Preview id={this.state.recommandations[0].id} titre={this.state.recommandations[0].title} affiche={"https://image.tmdb.org/t/p/w500/".concat(this.state.recommandations[0].poster_path)}/></td>
+                                        <td className="preview"><Preview id={this.state.recommandations[1].id} titre={this.state.recommandations[1].title} affiche={"https://image.tmdb.org/t/p/w500/".concat(this.state.recommandations[1].poster_path)}/></td>
+                                        <td className="preview"><Preview id={this.state.recommandations[2].id} titre={this.state.recommandations[2].title} affiche={"https://image.tmdb.org/t/p/w500/".concat(this.state.recommandations[2].poster_path)}/></td>
+                                        <td className="preview"><Preview id={this.state.recommandations[3].id} titre={this.state.recommandations[3].title} affiche={"https://image.tmdb.org/t/p/w500/".concat(this.state.recommandations[3].poster_path)}/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
